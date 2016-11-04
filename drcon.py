@@ -41,7 +41,6 @@ PRIMARY_DNS = '10.10.10.10'
 dhcp_server = '0.0.0.0'
 AUTH_VERSION = '\x68\x00'
 KEEP_ALIVE_VERSION = '\xdc\x02'
-#好大一堆我还没看懂。。。
 nic_name = ''
 bind_ip = '0.0.0.0'
 
@@ -82,7 +81,7 @@ if nic_name != '':
     bind_ip = bind_nic()
 
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-#给原代码加了这个提示，貌似是其他客户端运行的错误
+#给原代码加了这个提示，是其他客户端运行的错误
 try:#请检查是否有其他客户端正在运行，错误
     s.bind((bind_ip, 61440))
 except Exception:#
@@ -152,7 +151,6 @@ def keep_alive_package_builder(number, random, tail, type=1, first=False):
     return data
 
 def keep_alive2(*args):
-    STATUSCHK = 0
     svr = server
     ran = random.randint(0, 0xFFFF)
     ran += random.randint(1, 10)
@@ -223,18 +221,10 @@ def keep_alive2(*args):
             log('[keep_alive2] recv', data.encode('hex'))
             tail = data[16:20]
             i = (i + 2) % 0xFF
-            STATUSCHK == 0
             time.sleep(20)
             keep_alive1(*args)
         except:
-            STATUSCHK += 1#网络断开的检查并提示
-            if STATUSCHK == 3:
-                alert(#网络已断开，请重新登录，错误
-                    '\xcd\xf8\xc2\xe7\xd2\xd1\xb6\xcf\xbf\xaa\xa3\xac\xc7\xeb\xd6\xd8\xd0\xc2\xb5\xc7\xc2\xbc'
-                    , '\xb4\xed\xce\xf3')
-                initWin.Show()
-                STATUSCHK = 0
-                return 'error'
+            pass
 
 def ror(md5, pwd):
     ret = ''
