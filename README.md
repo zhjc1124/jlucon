@@ -1,7 +1,8 @@
 # jlucon  
 for JLU  
 
-已不再更新,逐渐弃坑python2,基本转入python3
+已不再更新,逐渐弃坑python2,基本转入python3       
+
 这是一个吉大校园网drcom的第三方登录客户端
 
 闲的时候写的一个有很多瑕疵的小玩意   
